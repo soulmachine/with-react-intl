@@ -1,0 +1,10 @@
+[
+  {
+    "id": "nav.home",
+    "defaultMessage": "Home"
+  },
+  {
+    "id": "nav.about",
+    "defaultMessage": "About"
+  }
+]

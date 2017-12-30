@@ -1,0 +1,29 @@
+{
+  "name": "with-react-intl",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"tsc --pretty --watch\" \"node server.js ./build\"",
+    "prebuild": "rm -rf ./build && tsc",
+    "build": "next build ./build && node ./scripts/default-lang",
+    "start": "NODE_ENV=production node server.js ./build"
+  },
+  "dependencies": {
+    "accepts": "^1.3.3",
+    "babel-plugin-react-intl": "^2.3.1",
+    "glob": "^7.1.1",
+    "intl": "^1.2.5",
+    "next": "latest",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-intl": "^2.2.3"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/next": "^2.4.7",
+    "@types/react": "^16.0.31",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-intl": "^2.3.3",
+    "@types/styled-jsx": "^2.2.0",
+    "concurrently": "^3.5.1"
+  }
+}

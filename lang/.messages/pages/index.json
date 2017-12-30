@@ -1,0 +1,10 @@
+[
+  {
+    "id": "description",
+    "defaultMessage": "An example app integrating React Intl with Next.js"
+  },
+  {
+    "id": "greeting",
+    "defaultMessage": "Hello, World!"
+  }
+]
