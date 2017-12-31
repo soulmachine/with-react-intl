@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "concurrently \"tsc --pretty --watch\" \"node server.js\"",
-    "prebuild": "rm -rf dist && tsc",
-    "build": "next build dist && node ./scripts/default-lang",
+    "prebuild": "tsc",
+    "build": "next build ./build && node ./scripts/default-lang.js",
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
