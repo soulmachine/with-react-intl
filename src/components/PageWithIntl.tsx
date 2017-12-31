@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {IntlProvider, addLocaleData, injectIntl} from 'react-intl'
-import {Page, Context} from '../../@types/next'
+import {Page, Context} from 'next'
 
 // Register React Intl's locale data for the user's locale in the browser. This
 // locale data was added to the page by `pages/_document.js`. This only happens

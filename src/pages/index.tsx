@@ -3,7 +3,8 @@ import {FormattedMessage, FormattedNumber, defineMessages, InjectedIntl} from 'r
 import Head from 'next/head'
 import pageWithIntl from '../components/PageWithIntl'
 import Layout from '../components/Layout'
-import {Page, Context} from '../../@types/next'
+import {Page, Context} from 'next'
+
 
 const {description} = defineMessages({
   description: {

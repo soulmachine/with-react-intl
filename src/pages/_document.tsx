@@ -1,5 +1,5 @@
 import {Head, Main, NextScript} from 'next/document'
-import {Page, Context} from '../../@types/next'
+import {Page, Context} from 'next'
 
 // The document (which is SSR-only) needs to be customized to expose the locale
 // data for the user's locale for React Intl to work in the browser.

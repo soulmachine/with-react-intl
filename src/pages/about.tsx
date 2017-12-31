@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {FormattedRelative} from 'react-intl'
 import pageWithIntl from '../components/PageWithIntl'
 import Layout from '../components/Layout'
-import {Page, Context} from '../../@types/next'
+import {Page, Context} from 'next'
 
 class About extends Page {
   static async getInitialProps (context: Context) {
