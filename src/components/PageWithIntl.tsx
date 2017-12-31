@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {IntlProvider, addLocaleData, injectIntl} from 'react-intl'
-import {Page, Context} from 'next'
+import {IntlProvider, addLocaleData, injectIntl, InjectedIntlProps} from 'react-intl'
+import {Context} from 'next'
+
 
 // Register React Intl's locale data for the user's locale in the browser. This
 // locale data was added to the page by `pages/_document.js`. This only happens
@@ -11,14 +12,21 @@ if (typeof window !== 'undefined' && window.ReactIntlLocaleData) {
   })
 }
 
-export default function pageWithIntl(page: Page) {
-  const IntlPage = injectIntl(page)
+interface AdditionalProps {
+  locale: string;
+  messages: object;
+  initialNow: Date;
+}
 
-  return class PageWithIntl extends Page {
+export default function pageWithIntl<P extends InjectedIntlProps>(WrappedComponent: React.ComponentType<P>): React.ComponentClass<P & AdditionalProps> {
+  const IntlPage = injectIntl(WrappedComponent)
+
+  return class extends React.PureComponent<P & AdditionalProps> {
     static async getInitialProps (context: Context) {
       let props
-      if (typeof Page.getInitialProps === 'function') {
-        props = await Page.getInitialProps(context)
+      const tmp: any = WrappedComponent
+      if (typeof tmp.getInitialProps === 'function') {
+        props = await tmp.getInitialProps(context)
       }
 
       // Get the `locale` and `messages` from the request object on the server.
@@ -28,20 +36,19 @@ export default function pageWithIntl(page: Page) {
 
       // Always update the current time on page load/transition because the
       // <IntlProvider> will be a new instance even with pushState routing.
-      const now = Date.now()
+      const initialNow = Date.now()
 
-      return {...props, locale, messages, now}
+      return {...props, locale, messages, initialNow}
     }
 
     render () {
-      const {locale, messages, now, ...props} = this.props
-      console.log(locale)
-      if (typeof window !== 'undefined') {
-        console.log(window.__NEXT_DATA__.props)
-      }
+      // error TS2700: Rest types may only be created from object types.
+      // const {locale, messages, initialNow, ...props} = this.props
+      const {locale, messages, initialNow} = this.props
+
       return (
-        <IntlProvider locale={locale} messages={messages} initialNow={now}>
-          <IntlPage {...props} />
+        <IntlProvider locale={locale} messages={messages}>
+          <IntlPage {...this.props} />
         </IntlProvider>
       )
     }

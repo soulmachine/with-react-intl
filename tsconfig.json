@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "typeRoots": [
       "./node_modules/@types/",
-      "./@types/"
+      "./src/@types/"
     ]
   },
   "include": [

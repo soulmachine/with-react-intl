@@ -1,9 +1,9 @@
 import React from 'react'
-import {FormattedMessage, FormattedNumber, defineMessages, InjectedIntl} from 'react-intl'
+import {FormattedMessage, FormattedNumber, defineMessages, InjectedIntlProps} from 'react-intl'
 import Head from 'next/head'
 import pageWithIntl from '../components/PageWithIntl'
 import Layout from '../components/Layout'
-import {Page, Context} from 'next'
+import {Context} from 'next'
 
 
 const {description} = defineMessages({
@@ -13,11 +13,10 @@ const {description} = defineMessages({
   }
 })
 
-class Index extends Page {
-  render() {
-    return (<Layout title="React Intl Example">
+const Index: React.SFC<InjectedIntlProps> = (props) => (
+  <Layout title="React Intl Example">
     <Head>
-      <meta name='description' content={this.props.intl.formatMessage(description)} />
+      <meta name='description' content={props.intl.formatMessage(description)} />
     </Head>
     <p>
       <FormattedMessage id='greeting' defaultMessage='Hello, World!' />
@@ -25,8 +24,7 @@ class Index extends Page {
     <p>
       <FormattedNumber value={1000} />
     </p>
-  </Layout>)
-  }
-}
+  </Layout>
+)
 
 export default pageWithIntl(Index)

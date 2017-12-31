@@ -2,9 +2,14 @@ import React, {Component} from 'react'
 import {FormattedRelative} from 'react-intl'
 import pageWithIntl from '../components/PageWithIntl'
 import Layout from '../components/Layout'
-import {Page, Context} from 'next'
+import {Context} from 'next'
+import {InjectedIntlProps} from 'react-intl'
 
-class About extends Page {
+interface AboutProps extends InjectedIntlProps {
+  someDate: Date;
+}
+
+class About extends React.PureComponent<AboutProps> {
   static async getInitialProps (context: Context) {
     return {someDate: Date.now()}
   }
