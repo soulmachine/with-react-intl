@@ -2,10 +2,10 @@
   "name": "with-react-intl",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \"tsc --pretty --watch\" \"node server.js ./build\"",
-    "prebuild": "rm -rf ./build && tsc",
-    "build": "next build ./build && node ./scripts/default-lang",
-    "start": "NODE_ENV=production node server.js ./build"
+    "dev": "concurrently \"tsc --pretty --watch\" \"node server.js\"",
+    "prebuild": "rm -rf dist && tsc",
+    "build": "next build dist && node ./scripts/default-lang",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "accepts": "^1.3.3",
@@ -24,6 +24,7 @@
     "@types/react-dom": "^16.0.3",
     "@types/react-intl": "^2.3.3",
     "@types/styled-jsx": "^2.2.0",
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "typescript": "^2.6.2"
   }
 }

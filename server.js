@@ -13,11 +13,11 @@ const next = require('next')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({dev})
+const app = next({dev, dir: 'dist'})
 const handle = app.getRequestHandler()
 
 // Get the supported languages by looking for translations in the `lang/` dir.
-const languages = glob.sync('../lang/*.json').map((f) => basename(f, '.json'))
+const languages = glob.sync('./lang/*.json').map((f) => basename(f, '.json'))
 
 // We need to expose React Intl's locale data on the request for the user's
 // locale. This function will also cache the scripts by lang in memory.
@@ -36,7 +36,7 @@ const getLocaleDataScript = (locale) => {
 // locale. These will only be used in production, in dev the `defaultMessage` in
 // each message description in the source code will be used.
 const getMessages = (locale) => {
-  return require(`../lang/${locale}.json`)
+  return require(`./lang/${locale}.json`)
 }
 
 app.prepare().then(() => {
